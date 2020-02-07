@@ -2,6 +2,8 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from rango.models import Category
 from rango.models import Page
+from rango.forms import CategoryForm
+from django.shortcuts import redirect
 
 def index(request):
       category_list = Category.objects.order_by('-likes')[:5]
@@ -34,7 +36,26 @@ def show_category(request, category_name_slug):
      
       return render(request, 'rango/category.html', context=context_dict)
 
-def show_page(request, page_url):
-      context_dict = {}
+def add_category(request):
+      form = CategoryForm()
+      
+      if request.method == 'POST':
+           form = CategoryForm(request.POST)
+
+           if form.is_valid():
+                    cat = form.save(commit=True)
+                    print(cat, cat.slug)
+                    return redirect('/rango/')
+           else:
+                    print(form.errors)
+       
+      return render(request, 'rango/add_category.html', {'form': form})
+
+
+
+
+
+
+
 
       
