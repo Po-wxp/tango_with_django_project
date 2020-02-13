@@ -13,7 +13,7 @@
          Rango says: <strong>thank you for registering!</strong>
          <a href="{% url 'rango:index' %}">Return to the homepage.</a><br />
          {% else %}
-         Rango says: <strong> register here!</strong><br />
+         Rango says: <strong>register here!</strong><br />
          <form id="user_form" method="post" action="{% url 'rango:register' %}"
                      enctype="multipart/form-data">
      
@@ -23,7 +23,7 @@
                      {{ profile_form.as_p }}
 
                      <!--Provide a button to click to submit the form.-->
-                     <input type="submit" name="submit" value="Registered" />
+                     <input type="submit" name="submit" value="Register" />
          </form>
          {% endif %}
 {% endblock %}
